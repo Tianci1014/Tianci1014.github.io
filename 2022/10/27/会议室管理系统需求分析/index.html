@@ -1,0 +1,1461 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="chentianci">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="[TOC] 引言编写目的​		本文档的目的是详细地介绍“基于React和SpringBoot的多平台会议室管理系统”所包含的需求，以便客户能够确认产品的确切需求以及开发人员能够根据需求设计编码，以下叙述将结合文字描述、数据流图、ER图等来描述该系统的功能、性能、用户界面（包括管理员界面、普通用户界面）、运行环境、外部接口以及针对用户操作给出的各种响应。本文档的预期读者有客户、开发人员以及跟该项目相">
+<meta property="og:type" content="article">
+<meta property="og:title" content="此地不宜久留">
+<meta property="og:url" content="http://example.com/2022/10/27/%E4%BC%9A%E8%AE%AE%E5%AE%A4%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/index.html">
+<meta property="og:site_name" content="此地不宜久留">
+<meta property="og:description" content="[TOC] 引言编写目的​		本文档的目的是详细地介绍“基于React和SpringBoot的多平台会议室管理系统”所包含的需求，以便客户能够确认产品的确切需求以及开发人员能够根据需求设计编码，以下叙述将结合文字描述、数据流图、ER图等来描述该系统的功能、性能、用户界面（包括管理员界面、普通用户界面）、运行环境、外部接口以及针对用户操作给出的各种响应。本文档的预期读者有客户、开发人员以及跟该项目相">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/635a21c516f2c2beb1a20c4d.jpg">
+<meta property="og:image" content="https://tva2.sinaimg.cn/large/006hWKQzly8h7k6z9b3x2j315v0u0gu3.jpg">
+<meta property="og:image" content="https://tva4.sinaimg.cn/large/006hWKQzly8h7jzco6wvej30bn07kmx8.jpg">
+<meta property="og:image" content="https://tva3.sinaimg.cn/large/006hWKQzly8h7k79gynogj316p0u0ah4.jpg">
+<meta property="article:published_time" content="2022-10-27T14:34:02.478Z">
+<meta property="article:modified_time" content="2022-10-27T14:34:01.940Z">
+<meta property="article:author" content="chentianci">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/635a21c516f2c2beb1a20c4d.jpg">
+  
+  
+  
+  <title>此地不宜久留</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>💕🐱</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-10-27 22:34" pubdate>
+          2022年10月27日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          51 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>[TOC]</p>
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><h2 id="编写目的"><a href="#编写目的" class="headerlink" title="编写目的"></a>编写目的</h2><p>​		本文档的目的是详细地介绍“基于React和SpringBoot的多平台会议室管理系统”所包含的需求，以便客户能够确认产品的确切需求以及开发人员能够根据需求设计编码，以下叙述将结合文字描述、数据流图、ER图等来描述该系统的功能、性能、用户界面（包括管理员界面、普通用户界面）、运行环境、外部接口以及针对用户操作给出的各种响应。本文档的预期读者有客户、开发人员以及跟该项目相关的其他竞争人员。</p>
+<h1 id="任务概述"><a href="#任务概述" class="headerlink" title="任务概述"></a>任务概述</h1><h2 id="项目概述"><a href="#项目概述" class="headerlink" title="项目概述"></a>项目概述</h2><h3 id="项目来源及背景"><a href="#项目来源及背景" class="headerlink" title="项目来源及背景"></a>项目来源及背景</h3><p>​		会议室的预定和管理问题，在企业、园区、学校等人员组织多，会议多的地方非常的普遍。纯电脑端的会议预定系统，看的人少，经常发生会议冲突的问题；而在门口填写预定信息，则不知道哪个会议室有空。在企业里，就经常会碰到类似问题：临时开会，找了多个会议室都有人在开会；预定了会议室，有人会议延迟太久结束，影响后面的人开会;有人未预定会议室却在使用。</p>
+<p>​		所以我们推出“基于React和SpringBoot的多平台会议室管理系统”，这是一个针对企业、园区、学校人员的智能会议管理系统，使用者可以在这里获得良好的会议体验。</p>
+<h3 id="项目目标"><a href="#项目目标" class="headerlink" title="项目目标"></a>项目目标</h3><p>​		该项目的市场目标为企业、园区、学校人员等群体、会议预定和管理软件市场，应用目标为实现会议预定和管理智能化，不掺杂其他功能。</p>
+<h3 id="系统功能概述"><a href="#系统功能概述" class="headerlink" title="系统功能概述"></a>系统功能概述</h3><ul>
+<li>管理端<ol>
+<li>查询用户和会议室</li>
+<li>添加用户和会议室</li>
+<li>修改用户和会议室</li>
+<li>删除用户和会议室</li>
+</ol>
+</li>
+<li>预定端<ol>
+<li>查看公告和邀请信息</li>
+<li>查看已预约的会议</li>
+<li>查看需参与的会议</li>
+<li>预约会议</li>
+<li>修改个人信息</li>
+</ol>
+</li>
+</ul>
+<h2 id="用户特点"><a href="#用户特点" class="headerlink" title="用户特点"></a>用户特点</h2><p>​		本系统的用户主要是在企业、园区、学校等场所工作或学习的群体，这类人群的主要特点是需要经常性地预定或参与会议，在本系统上可以便捷地管理、预定、参与会议室，以满足自己的会议需求。</p>
+<h1 id="功能需求"><a href="#功能需求" class="headerlink" title="功能需求"></a>功能需求</h1><h2 id="功能划分"><a href="#功能划分" class="headerlink" title="功能划分"></a>功能划分</h2><h3 id="系统功能组成"><a href="#系统功能组成" class="headerlink" title="系统功能组成"></a>系统功能组成</h3><ol>
+<li><p>系统的顶层数据流图</p>
+<p><img src="https://pic1.imgdb.cn/item/635a21c516f2c2beb1a20c4d.jpg" srcset="/img/loading.gif" lazyload alt="会议室管理系统顶层数据流图"></p>
+<p>描述：系统的使用者可以扮演两种角色——管理员和普通用户。使用者扮演管理员的角色时，可以向系统发送事务，同时管理员可以浏览系统返回的事务，即管理员与系统有双向的数据流动。当使用者扮演普通用户的角色时，可以向系统发送事务，同时普通用户可以浏览系统返回的事务，即普通用户与系统也有双向的数据流动。</p>
+</li>
+<li><p>系统的0层数据流图</p>
+<p><img src="https://tva2.sinaimg.cn/large/006hWKQzly8h7k6z9b3x2j315v0u0gu3.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>描述：用户（包括两种角色——管理员、普通用户）通过提交身份信息向用户登录事务发送请求。用户登录事务从用户信息库中读取相应的用户信息进行匹配判断登录结果。用户登录成功后，管理员可以查询、添加、修改、删除会议室和用户，通过添加用户邀请其他普通用户，并根据企业内部情况对会议室及其他普通用户进行使用权限管理；普通用户可发起会议或加入会议，若想发起会议需要进行预约，预约时查询并选择时间段、填写会议主题并添加与会人（如有变动可修改预约信息），系统将自动给与会人发送通知邮件，与会人若要加入会议，可通过该系统刷脸签到会议。</p>
+</li>
+</ol>
+<h2 id="功能描述"><a href="#功能描述" class="headerlink" title="功能描述"></a>功能描述</h2><ol>
+<li><p>用户登录</p>
+<p>功能描述：用户登录可以分为注册和登陆。注册时用户提供新用户注册信息发往注册事务，注册事务根据新用户注册信息得到新用户信息存入用户信息库，同时流动出用户信息。登录时用户提供用户名和密码发往登录事务，登录事务将得到的用户名和密码与用户信息库中的信息匹配，同时流动出用户信息。</p>
+<p><img src="https://tva4.sinaimg.cn/large/006hWKQzly8h7jzco6wvej30bn07kmx8.jpg" srcset="/img/loading.gif" lazyload></p>
+<table>
+<thead>
+<tr>
+<th>加工名称：1.1登录</th>
+<th>使用单位：所有用户</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入部分I</td>
+<td>处理描述P</td>
+<td>输出部分O</td>
+</tr>
+<tr>
+<td>用户名、密码</td>
+<td>用户利用自己的用户名和密码进行登录</td>
+<td>用户信息</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>加工名称：1.2注册</th>
+<th>使用单位：用户</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入部分I</td>
+<td>处理描述P</td>
+<td>输出部分O</td>
+</tr>
+<tr>
+<td>用户注册信息</td>
+<td>新用户输入用户名（邮箱或ID）、密码、昵称，并录入人脸进行注册</td>
+<td>用户信息</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>修改个人信息</p>
+<p>功能描述：用户登录后可以进行相应操作进入个人信息管理界面，用户可以在此页面修改自己的个人信息。</p>
+<table>
+<thead>
+<tr>
+<th>加工名称：2修改个人信息</th>
+<th>使用单位：所有用户</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入部分I</td>
+<td>处理描述P</td>
+<td>输出部分O</td>
+</tr>
+<tr>
+<td>当前用户信息</td>
+<td>用户对自己的个人信息进行修改和保存</td>
+<td>修改后的个人信息</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>查看已预约的会议</p>
+<p>功能描述：用户在首页点击“查询已预约的会议”，进行查询会议室信息库事务，处理传入的用户信息，流动出会议室信息</p>
+<pre><code class=" Mermaid">graph LR
+A[查看已预约的会议] -- 用户信息 --&gt; B(会议室信息库)
+B -- 会议主题 --&gt; C&#123;输出&#125;
+B -- 会议时间 --&gt; C&#123;输出&#125;
+B -- 会议室地点 --&gt; C&#123;输出&#125;
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>加工名称：3查看已预约的会议</th>
+<th>使用单位：用户</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入部分I</td>
+<td>处理描述P</td>
+<td>输出部分O</td>
+</tr>
+<tr>
+<td>当前用户信息</td>
+<td>会议室信息库根据输入的用户信息查找对应的会议室</td>
+<td>用户预定的会议的主题、时间、地点</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>查看需参与的会议</p>
+<p>功能描述：用户在首页点击“查看需参与的会议”，进行查询会议室信息库事务，处理传入的用户信息，流动出会议室信息</p>
+<pre><code class=" Mermaid">graph LR
+A[查看需参与的会议] -- 用户信息 --&gt; B(会议室信息库)
+B -- 会议主题 --&gt; C&#123;输出&#125;
+B -- 会议时间 --&gt; C&#123;输出&#125;
+B -- 会议室地点 --&gt; C&#123;输出&#125;
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>加工名称：3查看需参与的会议</th>
+<th>使用单位：用户</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入部分I</td>
+<td>处理描述P</td>
+<td>输出部分O</td>
+</tr>
+<tr>
+<td>当前用户信息</td>
+<td>会议室信息库根据输入的用户信息查找对应的会议室</td>
+<td>用户预定的会议的主题、时间、地点</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>发布公告</p>
+<p>功能描述：管理员可以将公告信息传入消息列表数据库</p>
+</li>
+<li><p>查看公告和邀请信息</p>
+<p>功能描述：用户的个人信息传入消息列表，消息列表数据库查询出对应用户的公告和邀请信息，并将对应公告和邀请信息流动给用户，用户即可在其首页进行查看</p>
+</li>
+<li><p>会议室管理</p>
+<p>功能描述：会议室管理信息进入功能划分事务，功能划分事务流动出会议室地点信息及查询指令、会议室信息及添加指令、会议室信息及修改指令。会议室地点信息及查询指令进入查询会议室事务，流动出会议室的其他信息。会议室信息及添加指令进入添加会议室事务，处理出新增的会议室并存入会议室信息库。会议室信息及修改指令进入修改会议室事务，处理出修改后的会议室并存入会议室信息库。会议室地点信息及删除指令进入会议室删除事务，经过处理后流动出待删除会议室从会议室信息库中移除</p>
+<p>（注：若查询会议室没有给出会议室地点，则查询所有会议室的信息）</p>
+<pre><code class=" Mermaid">graph LR
+A(7.1功能划分) -- 会议室地点信息及查询指令 --&gt; B(7.2查询会议室)
+B -- 会议室地点 --&gt; E[会议室信息库]
+E -- 会议室其他信息 --&gt; O&#123;输出&#125;
+A -- 会议室信息及添加指令 --&gt; D(7.3添加会议室)
+D -- 会议室信息 --&gt; F((新增的会议室))
+F -- 会议室信息 --&gt; E
+A -- 会议室信息及修改指令 --&gt; G(7.4修改会议室)
+G -- 修改前的会议室信息 --&gt; H((修改后的会议室))
+H -- 修改后的会议室信息 --&gt; E
+A -- 会议室地点信息及删除指令 --&gt; I(7.5删除会议室)
+I -- 待删除会议室信息 --&gt; E
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>加工名称：7.1功能划分</th>
+<th>使用单位：管理员</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入部分I</td>
+<td>处理描述P</td>
+<td>输出部分O</td>
+</tr>
+<tr>
+<td>用户信息</td>
+<td>系统根据用户信息判断该用户是否有权限进入会议室管理事务</td>
+<td>相关功能所需信息</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>加工名称：7.2查询会议室</th>
+<th>使用单位：管理员</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入部分I</td>
+<td>处理描述P</td>
+<td>输出部分O</td>
+</tr>
+<tr>
+<td>会议室地点信息及查询指令</td>
+<td>系统根据输入的会议室地点信息将该会议室其他信息展示给用户</td>
+<td>对应会议室的其他信息</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>加工名称：7.3添加会议室</th>
+<th>使用单位：管理员</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入部分I</td>
+<td>处理描述P</td>
+<td>输出部分O</td>
+</tr>
+<tr>
+<td>会议室信息及添加指令</td>
+<td>系统根据输入的会议室信息新建一个会议室，并将该新会议室的信息流动到会议室信息库</td>
+<td>新会议室信息</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>加工名称：7.4修改会议室</th>
+<th>使用单位：管理员</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入部分I</td>
+<td>处理描述P</td>
+<td>输出部分O</td>
+</tr>
+<tr>
+<td>会议室信息及修改指令</td>
+<td>系统根据会议室信息查找出待修改的会议室并修改，将修改后的会议室信息流动到会议室信息库</td>
+<td>修改后的会议室信息</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>加工名称：7.5删除会议室</th>
+<th>使用单位：管理员</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入部分I</td>
+<td>处理描述P</td>
+<td>输出部分O</td>
+</tr>
+<tr>
+<td>会议室地点信息及删除指令</td>
+<td>系统根据会议室地点信息删除该会议室</td>
+<td>删除会议室</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>用户管理</p>
+<p>功能描述：用户管理信息进入功能划分事务，功能划分事务流动出用户名信息及查询指令、用户信息及添加指令、用户信息及修改指令。用户名信息及查询指令进入查询会议室事务，流动出会议室的其他信息。用户信息及添加指令进入添加用户事务，处理出新增的用户并存入用户信息库。用户信息及修改指令进入修改用户事务，处理出修改后的用户并存入用户信息库。用户名信息及删除指令进入用户删除事务，经过处理后流动出待删除用户从用户信息库中移除</p>
+<pre><code class=" Mermaid">graph LR
+A(7.1功能划分) -- 用户名信息及查询指令 --&gt; B(7.2查询用户)
+B -- 用户名 --&gt; E[用户信息库]
+E -- 用户其他信息 --&gt; O&#123;输出&#125;
+A -- 用户信息及添加指令 --&gt; D(7.3添加用户)
+D -- 用户信息 --&gt; F((新增的用户))
+F -- 用户信息 --&gt; E
+A -- 用户信息及修改指令 --&gt; G(7.4修改用户)
+G -- 修改前的用户信息 --&gt; H((修改后的用户))
+H -- 修改后的用户信息 --&gt; E
+A -- 用户名信息及删除指令 --&gt; I(7.5删除用户)
+I -- 待删除用户信息 --&gt; E
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>加工名称：7.1功能划分</th>
+<th>使用单位：管理员</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入部分I</td>
+<td>处理描述P</td>
+<td>输出部分O</td>
+</tr>
+<tr>
+<td>用户信息</td>
+<td>系统根据用户信息判断该用户是否有权限进入用户管理事务</td>
+<td>相关功能所需信息</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>加工名称：7.2查询会议室</th>
+<th>使用单位：管理员</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入部分I</td>
+<td>处理描述P</td>
+<td>输出部分O</td>
+</tr>
+<tr>
+<td>用户名信息及查询指令</td>
+<td>系统根据输入的用户名信息将该用户其他信息展示给管理员</td>
+<td>对应用户的其他信息</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>加工名称：7.3添加用户</th>
+<th>使用单位：管理员</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入部分I</td>
+<td>处理描述P</td>
+<td>输出部分O</td>
+</tr>
+<tr>
+<td>用户信息及添加指令</td>
+<td>系统根据输入的用户信息新建一个用户，并将该新用户的信息流动到用户信息库</td>
+<td>新用户信息</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>加工名称：7.4修改用户</th>
+<th>使用单位：管理员</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入部分I</td>
+<td>处理描述P</td>
+<td>输出部分O</td>
+</tr>
+<tr>
+<td>用户信息及修改指令</td>
+<td>系统根据用户信息查找出待修改的用户并修改，将修改后的用户信息流动到用户信息库</td>
+<td>修改后的用户信息</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>加工名称：7.5删除用户</th>
+<th>使用单位：管理员</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入部分I</td>
+<td>处理描述P</td>
+<td>输出部分O</td>
+</tr>
+<tr>
+<td>用户名信息及删除指令</td>
+<td>系统根据用户名信息删除该用户</td>
+<td>删除用户</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>预约会议</p>
+<p>功能描述：用户信息（会议发起者）进入预约会议事务，然后查询哪些会议室可用，用户从其中选择一间会议室，填写会议主题、时间、受邀人。预约成功的会议室信息流动到会议室信息库，会议室信息库将修改后的会议室信息流动到消息列表</p>
+<pre><code class=" Mermaid">graph LR
+A[D1 用户信息库] -- 会议发起者信息 --&gt; B(9.1功能划分)
+B -- 查询指令 --&gt; C(9.2查询会议室)
+C -- 查询指令 --&gt; D[D2 会议室信息库]
+D -- 会议室信息 --&gt; B
+B -- 修改指令和修改前的会议室信息 --&gt; E(9.3修改会议室)
+E -- 修改后的会议室信息 --&gt; D
+D -- 修改后的会议室信息 --&gt; F[D3 消息列表]
+</code></pre></li>
+</ol>
+<h1 id="数据需求"><a href="#数据需求" class="headerlink" title="数据需求"></a>数据需求</h1><h2 id="静态数据"><a href="#静态数据" class="headerlink" title="静态数据"></a>静态数据</h2><p>用户信息、会议室信息、消息列表</p>
+<h2 id="动态数据"><a href="#动态数据" class="headerlink" title="动态数据"></a>动态数据</h2><p>判断用户某一个行为后的状态码和提示消息</p>
+<h2 id="数据字典"><a href="#数据字典" class="headerlink" title="数据字典"></a>数据字典</h2><ol>
+<li><p>数据流条目</p>
+<ol>
+<li><p>身份信息</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>身份信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>简述</td>
+<td>描述管理员和普通用户的身份</td>
+</tr>
+<tr>
+<td>来源</td>
+<td>管理员、普通用户</td>
+</tr>
+<tr>
+<td>去处</td>
+<td>1使用者登录</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>用户名</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>用户名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>简述</td>
+<td>用户登录的账号，可以是邮箱或企业内部ID</td>
+</tr>
+<tr>
+<td>类型</td>
+<td>varchar</td>
+</tr>
+<tr>
+<td>长度</td>
+<td>1024</td>
+</tr>
+<tr>
+<td>来源</td>
+<td>1使用者登录</td>
+</tr>
+<tr>
+<td>去处</td>
+<td>D1用户信息库</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>密码</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>密码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>简述</td>
+<td>用户登录的账号对应的密码</td>
+</tr>
+<tr>
+<td>类型</td>
+<td>varchar</td>
+</tr>
+<tr>
+<td>长度</td>
+<td>1024</td>
+</tr>
+<tr>
+<td>来源</td>
+<td>1使用者登录</td>
+</tr>
+<tr>
+<td>去处</td>
+<td>D1用户信息库</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>人脸信息</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>人脸信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>简述</td>
+<td>使用者的人脸数据</td>
+</tr>
+<tr>
+<td>类型</td>
+<td>图像</td>
+</tr>
+<tr>
+<td>来源</td>
+<td>1使用者登录</td>
+</tr>
+<tr>
+<td>去处</td>
+<td>D1用户信息库</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>会议主题</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>会议主题</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>简述</td>
+<td>普通用户所预定会议的主题</td>
+</tr>
+<tr>
+<td>来源</td>
+<td>9预约会议</td>
+</tr>
+<tr>
+<td>去处</td>
+<td>D2会议室信息库</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>会议时间</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>会议时间</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>简述</td>
+<td>普通用户所预定会议的时间</td>
+</tr>
+<tr>
+<td>来源</td>
+<td>9预约会议</td>
+</tr>
+<tr>
+<td>去处</td>
+<td>D2会议室信息库</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>会议室地点</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>会议室地点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>简述</td>
+<td>会议室的门牌号</td>
+</tr>
+<tr>
+<td>来源</td>
+<td>7会议室管理</td>
+</tr>
+<tr>
+<td>去处</td>
+<td>D2会议室信息库</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>会议发起人</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>会议发起人</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>简述</td>
+<td>是谁预定了该会议</td>
+</tr>
+<tr>
+<td>来源</td>
+<td>9预约会议</td>
+</tr>
+<tr>
+<td>去处</td>
+<td>D2会议室信息库</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>会议参与人</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>会议参与人</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>简述</td>
+<td>会议邀请了哪些人入会</td>
+</tr>
+<tr>
+<td>来源</td>
+<td>9预约会议</td>
+</tr>
+<tr>
+<td>去处</td>
+<td>D2会议室信息库</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>公告</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>公告</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>简述</td>
+<td>管理员对每个用户发布的须知</td>
+</tr>
+<tr>
+<td>来源</td>
+<td>管理员</td>
+</tr>
+<tr>
+<td>去处</td>
+<td>D3消息列表</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>邀请信息</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>邀请信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>简述</td>
+<td>会议受邀人收到的入会通知信息</td>
+</tr>
+<tr>
+<td>来源</td>
+<td>D2会议室信息库</td>
+</tr>
+<tr>
+<td>去处</td>
+<td>D3消息列表</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+</li>
+<li><p>数据存储条目</p>
+<ol>
+<li><p>用户信息</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>用户信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>简述</td>
+<td>描述用户的信息</td>
+</tr>
+<tr>
+<td>组成</td>
+<td>用户身份+用户名+密码+昵称+人脸信息</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>会议室信息</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>会议室信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>简述</td>
+<td>描述会议室的信息</td>
+</tr>
+<tr>
+<td>组成</td>
+<td>会议室地点（+会议主题+会议时间+会议发起人+会议参与人）+会议室容量+会议室设备+空闲标志</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="数据库描述"><a href="#数据库描述" class="headerlink" title="数据库描述"></a>数据库描述</h2><p>软件的数据库概念模型（ER图）</p>
+<p><img src="https://tva3.sinaimg.cn/large/006hWKQzly8h7k79gynogj316p0u0ah4.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>该ER图有2个实体，分别为用户、会议室数据库，其中用户以用户名为关键字，会议室以地址为关键字，图中关系为一对多的关系</p>
+<h1 id="性能需求"><a href="#性能需求" class="headerlink" title="性能需求"></a>性能需求</h1><h2 id="数据精度"><a href="#数据精度" class="headerlink" title="数据精度"></a>数据精度</h2><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>精度</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>用户名</td>
+<td>char型或int型</td>
+<td>邮箱或企业内部ID</td>
+</tr>
+<tr>
+<td>密码</td>
+<td>char型</td>
+<td>8-12位</td>
+</tr>
+<tr>
+<td>昵称</td>
+<td>char型</td>
+<td></td>
+</tr>
+<tr>
+<td>会议室是否空闲</td>
+<td>boolean型</td>
+<td>某会议室当前时间段若可用且无人使用值为1，若不能使用值为0</td>
+</tr>
+</tbody></table>
+<h2 id="时间特性"><a href="#时间特性" class="headerlink" title="时间特性"></a>时间特性</h2><ol>
+<li>响应时间：用户任意操作后5秒内系统给予反馈信息。</li>
+<li>更新处理时间：由系统运行状态来决定。</li>
+<li>数据的转换和传送时间：能够在20秒内完成。</li>
+</ol>
+<h2 id="灵活性"><a href="#灵活性" class="headerlink" title="灵活性"></a>灵活性</h2><p>当需求发生某些变化时，该软件的基本操作、数据结构、运行环境等等基本不会发生变化，只是对系统的数据库的文件和记录进行处理，就可以满足需求。</p>
+<h1 id="运行需求"><a href="#运行需求" class="headerlink" title="运行需求"></a>运行需求</h1><h2 id="使用者界面"><a href="#使用者界面" class="headerlink" title="使用者界面"></a>使用者界面</h2><h3 id="普通用户界面"><a href="#普通用户界面" class="headerlink" title="普通用户界面"></a>普通用户界面</h3><ol>
+<li>注册：用户填写该页面的“用户名”、“昵称”、“密码”、“确认密码”信息后点击提交即可成功注册，返回“注册是否成功的消息”。</li>
+<li>登录：用户填写该页面的“用户名”、“密码”信息后点击登录即可成功登录，如果用户没有账号可以点击下方的链接进行注册。</li>
+<li>首页：此页面上方显示“邀请通知”，下面依次为“公告信息”、“你的预约”、“你的参与”点击列表中某个模块可以查看该公告或会议室详情；点击会议发起人或会议受邀人的头像可以查看该用户的“个人信息”</li>
+<li>个人中心：点击用户头像可以修改资料；中间提供该用户的基本数据信息；点击最下方的退出可以登出用户。</li>
+<li>预约：用户在该页面的顶部可以搜索会议室地址以查询会议室情况，页面中部是系统推荐的空闲会议室的列表，点进会议室的模块并填写会议主题、时间、受邀人即可预约会议</li>
+</ol>
+<h3 id="管理员界面"><a href="#管理员界面" class="headerlink" title="管理员界面"></a>管理员界面</h3><ol>
+<li>首页：右上角有注销按钮，可以在此退出或切换账号</li>
+<li>会议室管理：可以在这里查询、增加、删除、修改会议室</li>
+<li>用户管理：可以在这里查询、增加、删除、修改用户</li>
+<li>信息处理：可以在此发布公告、处理预约冲突等异常情况</li>
+</ol>
+<h2 id="软件接口"><a href="#软件接口" class="headerlink" title="软件接口"></a>软件接口</h2><ol>
+<li>操作系统：Microsoft Windows 11</li>
+<li>软件设备：VScode、IntelliJ IDEA、MySQL8.0</li>
+</ol>
+<h2 id="硬件接口"><a href="#硬件接口" class="headerlink" title="硬件接口"></a>硬件接口</h2><ol>
+<li>内存：512M以上</li>
+<li>磁盘空间：40G以上</li>
+<li>CPU：233Mhz以上</li>
+<li>硬盘空间：1.5G以上</li>
+</ol>
+<h1 id="其他需求"><a href="#其他需求" class="headerlink" title="其他需求"></a>其他需求</h1><h2 id="验收标准"><a href="#验收标准" class="headerlink" title="验收标准"></a>验收标准</h2><table>
+<thead>
+<tr>
+<th>测试功能</th>
+<th>测试项</th>
+<th>输入&#x2F;操作</th>
+<th>检验点</th>
+<th>预期结果</th>
+<th>验收</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>登录功能</td>
+<td>登录</td>
+<td>单击用户名输入框，输入用户名</td>
+<td>用户名和密码检查</td>
+<td>符合形式，输入错误，提示用户名或密码有问题，请重新输入</td>
+<td></td>
+</tr>
+<tr>
+<td>单击密码框，输入密码</td>
+<td>密码框保护</td>
+<td>输入的字符在密码框隐藏</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>预约界面</td>
+<td>预定会议</td>
+<td>单击会议室模块，输入会议信息</td>
+<td>会议成功预定</td>
+<td>查看首页显示“你的预约”</td>
+<td></td>
+</tr>
+<tr>
+<td>搜索会议室</td>
+<td>在查询框内输入会议室地址</td>
+<td>搜索</td>
+<td>查询框下显示相应的会议室</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="质量属性"><a href="#质量属性" class="headerlink" title="质量属性"></a>质量属性</h2><ol>
+<li>可用性：用户可以使用</li>
+<li>可靠性：在给定时间内可以大致上满足无错运行的要求</li>
+<li>可维护性：服务器重启、写进日志</li>
+<li>安全性：对用户的密码加密</li>
+<li>可移植性：移动端移植</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>http://example.com/2022/10/27/会议室管理系统需求分析/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>chentianci</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年10月27日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/10/23/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%8A%80%E6%9C%AF%20_%20%E7%BA%BF%E7%A8%8B%E7%94%9F%E6%88%90%20_%20%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1/" title="java多线程">
+                        <span class="hidden-mobile">java多线程</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"IRY6nJHar3hQrGo8EDo5z8a6-gzGzoHsz","appKey":"PWSLr8rjltSYxK7Rb58OJnxA","path":"window.location.pathname","placeholder":"说点什么吧    Just Go Go!","avatar":"mp","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":true,"serverURLs":"https://IRY6nJHa.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
